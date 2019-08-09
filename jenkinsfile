@@ -1,28 +1,13 @@
 pipeline {
     agent any
-
-   tools {
-        maven 'Maven3.6'
-        jdk 'jdk1.8'
+    tools { 
+        maven 'Maven3.6' 
+        jdk 'jdk1.8' 
     }
-
-    stages {
-        stage('Build') {
+    stage ('Build') {
             steps {
-                echo 'Building..'
+	      bat 'mvn test'
+                echo 'This is a minimal pipeline.'
             }
         }
-        stage('clean') {
-            steps {
-	      bat 'mvn clean'
-                echo 'Testing..'
-            }
-        }
-        stage('compile') {
-            steps {
-	      bat 'mvn compile'
-                echo 'compiling....'
-            }
-        }
-    }
 }
