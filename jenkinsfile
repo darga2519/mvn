@@ -5,10 +5,33 @@ pipeline {
         jdk 'java1.8' 
     }
         stages {
-           stage ('Build') {
+	   stage ('checkout') {
+             steps {
+                echo 'This is a checkout stage.'
+              }
+           }
+           stage ('clean') {
+             steps {
+	      bat 'mvn clean'
+                echo 'This is a clean stage.'
+              }
+           }
+	   stage ('compile') {
+             steps {
+	      bat 'mvn compile'
+                echo 'This is a compile stage.'
+              }
+           }
+	   stage ('test') {
              steps {
 	      bat 'mvn test'
-                echo 'This is a minimal pipeline.'
+                echo 'This is a testing stage.'
+              }
+           }
+	   stage ('package') {
+             steps {
+	      bat 'mvn package'
+                echo 'This is a final stage.'
               }
            }
 	}
